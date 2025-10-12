@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { API_CONFIG } from "@/config/api";
+import { handleSuccessfulLogin, handleLogout as handleExtensionLogout } from "@/utils/extension-integration";
 
 interface User {
   id: string;
@@ -74,6 +75,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         document.cookie = `refreshToken=${data.refreshToken}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 days
 
         setUser(data.user);
+
+        // Send authentication to extension
+        await handleSuccessfulLogin({
+          accessToken: data.accessToken,
+          user: data.user,
+        });
+
         return true;
       }
       return false;
@@ -107,6 +115,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         document.cookie = `refreshToken=${data.refreshToken}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 days
 
         setUser(data.user);
+
+        // Send authentication to extension
+        await handleSuccessfulLogin({
+          accessToken: data.accessToken,
+          user: data.user,
+        });
+
         return true;
       }
       return false;
@@ -115,7 +130,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    // Send logout to extension
+    await handleExtensionLogout();
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");

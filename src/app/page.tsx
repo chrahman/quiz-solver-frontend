@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Chip } from "@heroui/chip";
 import { Divider } from "@heroui/divider";
@@ -11,13 +12,42 @@ import CustomNavbar from "@/components/custom-components/Common/CustomNavbar";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { Link } from "@heroui/link";
+import { API_CONFIG } from "@/config/api";
 
 export default function Home() {
   const { user, logout } = useAuth();
   const router = useRouter();
+  const [pricingData, setPricingData] = useState({
+    planDurations: [],
+    planPayments: [],
+  });
 
   const handleLogout = () => {
     logout();
+  };
+
+  useEffect(() => {
+    loadPricingData();
+  }, []);
+
+  const loadPricingData = async () => {
+    try {
+      // Load plan durations
+      const durationsResponse = await fetch(`${API_CONFIG.BASE_URL}/plan-durations`);
+      if (durationsResponse.ok) {
+        const durations = await durationsResponse.json();
+        setPricingData((prev) => ({ ...prev, planDurations: durations }));
+      }
+
+      // Load plan payments
+      const paymentsResponse = await fetch(`${API_CONFIG.BASE_URL}/plan-payments`);
+      if (paymentsResponse.ok) {
+        const payments = await paymentsResponse.json();
+        setPricingData((prev) => ({ ...prev, planPayments: payments }));
+      }
+    } catch (error) {
+      console.error("Error loading pricing data:", error);
+    }
   };
 
   const menuItems = [

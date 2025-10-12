@@ -16,5 +16,8 @@ export const API_CONFIG = {
       DURATIONS: "/plan-durations",
       PAYMENTS: "/plan-payments",
     },
+    AI: {
+      ASK_STREAM: "/ask-question/ask-stream",
+    },
   },
 } as const;
