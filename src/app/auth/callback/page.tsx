@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import CustomContainer from "@/components/custom-components/Common/CustomContainer";
 import { API_CONFIG } from "@/config/api";
 
-export default function GoogleCallbackPage() {
+function GoogleCallbackContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -109,4 +109,24 @@ export default function GoogleCallbackPage() {
   }
 
   return null;
+}
+
+export default function GoogleCallbackPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+          <CustomContainer>
+            <div className="text-center">
+              <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Loading...</h2>
+              <p className="text-gray-600 dark:text-gray-300">Please wait...</p>
+            </div>
+          </CustomContainer>
+        </div>
+      }
+    >
+      <GoogleCallbackContent />
+    </Suspense>
+  );
 }
