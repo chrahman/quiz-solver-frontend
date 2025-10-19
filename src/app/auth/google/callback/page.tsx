@@ -1,23 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import CustomContainer from "@/components/custom-components/Common/CustomContainer";
 import { API_CONFIG } from "@/config/api";
 import { handleSuccessfulLogin } from "@/utils/extension-integration";
 
-export default function GoogleCallbackPage() {
+export default function GoogleCallbackPage({ searchParams }: { searchParams: Promise<{ token?: string; code?: string; error?: string }> }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = use(searchParams);
 
   useEffect(() => {
     const handleGoogleCallback = async () => {
       try {
-        const token = searchParams.get("token");
-        const code = searchParams.get("code");
-        const error = searchParams.get("error");
+        const token = params.token;
+        const code = params.code;
+        const error = params.error;
 
         if (error) {
           setError("Google authentication failed. Please try again.");

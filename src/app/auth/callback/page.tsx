@@ -1,23 +1,23 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import CustomContainer from "@/components/custom-components/Common/CustomContainer";
 import { API_CONFIG } from "@/config/api";
 
-function GoogleCallbackContent() {
+export default function GoogleCallbackPage({ searchParams }: { searchParams: Promise<{ token?: string; error?: string }> }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = use(searchParams);
   const { login } = useAuth();
 
   useEffect(() => {
     const handleGoogleCallback = async () => {
       try {
-        const token = searchParams.get("token");
-        const error = searchParams.get("error");
+        const token = params.token;
+        const error = params.error;
 
         if (error) {
           setError("Google authentication failed. Please try again.");
@@ -109,24 +109,4 @@ function GoogleCallbackContent() {
   }
 
   return null;
-}
-
-export default function GoogleCallbackPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
-          <CustomContainer>
-            <div className="text-center">
-              <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Loading...</h2>
-              <p className="text-gray-600 dark:text-gray-300">Please wait...</p>
-            </div>
-          </CustomContainer>
-        </div>
-      }
-    >
-      <GoogleCallbackContent />
-    </Suspense>
-  );
 }
