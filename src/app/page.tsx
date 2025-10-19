@@ -64,7 +64,7 @@ export default function Home() {
     },
     {
       title: "Smart Lecture Skipping",
-      description: "Skip lectures with intelligent cooldown system (50,000 skips limit, 90-second cooldown) and progress tracking.",
+      description: "Skip Unlimited video lectures & reading tabs with single click.",
       icon: IconBolt,
     },
     {
@@ -77,6 +77,16 @@ export default function Home() {
       description: "Works directly in Chrome with VU's learning management system through a beautiful side modal interface.",
       icon: IconBrowser,
     },
+    {
+      title: "Enable Copy Quiz",
+      description: "Enable copy protection bypass to easily copy text from VU's learning management system while solving quizzes",
+      icon: IconCode,
+    },
+    {
+      title: "Event Handler Blocking",
+      description: "Intelligently blocks restrictive event handlers that prevent normal browser functionality, ensuring a smooth user experience.",
+      icon: IconBolt,
+    },
   ];
 
   const pricingPlans = [
@@ -84,29 +94,20 @@ export default function Home() {
       name: "Free",
       price: "$0",
       period: "forever",
-      description: "Perfect for trying out the extension",
-      features: ["5 quiz questions per day", "Basic AI assistance", "Community support"],
-      buttonText: "Get Started",
-      popular: false,
-    },
-    {
-      name: "Premium",
-      price: "$5.00",
-      period: "per month",
-      description: "Best for regular students",
-      features: ["Unlimited quiz questions", "Advanced AI assistance", "Priority support", "Study analytics"],
-      buttonText: "Upgrade Now",
+      description: "Yes its free. Complete access to all features",
+      features: [
+        "Solve Unlimited quiz questions",
+        "AI-powered assistance for solving VU Quizzes",
+        "One click smart video & reading lecture skipping",
+        "Text selection & copy protection bypass",
+        "Event handler blocking",
+        "Enhanced formatting with markdown",
+        "Seamless browser integration",
+        "Community support",
+      ],
+      buttonText: "Get Started Free",
       popular: true,
     },
-    // {
-    //   name: "Enterprise",
-    //   price: "Custom",
-    //   period: "pricing",
-    //   description: "For organizations and institutions",
-    //   features: ["Everything in Premium", "Custom integrations", "Dedicated support", "Advanced analytics"],
-    //   buttonText: "Contact Sales",
-    //   popular: false,
-    // },
   ];
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -134,12 +135,12 @@ export default function Home() {
 
             <p className="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
               The revolutionary Chrome extension that helps VU students with quizzes and lecture skipping. Get AI-powered assistance with automatic question detection, real-time streaming responses,
-              and smart lecture skipping capabilities.
+              smart lecture skipping capabilities, and bypass copy protection - all completely free!
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <CustomButton color="primary" size="lg" className="text-lg px-8 py-6" as={Link} href="#pricing">
-                Start Free Trial
+                Get Started Free
               </CustomButton>
               <CustomButton variant="bordered" size="lg" className="text-lg px-8 py-6" as={Link} href="#about">
                 Learn More
@@ -172,13 +173,13 @@ export default function Home() {
             <p className="text-gray-600 max-w-2xl mx-auto">Everything you need to excel in your Virtual University journey with AI-powered assistance</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
                 <Card key={index} className="bg-white shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300">
-                  <CardHeader className="text-center pb-4 pt-6">
-                    <div className="w-12 h-12 mx-auto bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <CardHeader className="text-center pb-4 pt-6 gap-5  justify-center items-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                       <IconComponent className="w-6 h-6 text-blue-600" />
                     </div>
                     <h3 className="text-lg font-medium text-gray-900 mb-2">{feature.title}</h3>
@@ -197,47 +198,49 @@ export default function Home() {
       <section id="pricing" className="py-20">
         <CustomContainer>
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-3">Simple, Transparent Pricing</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Choose the plan that works best for your learning journey</p>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-3">Completely Free Forever</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">No subscriptions, no hidden fees - just powerful AI assistance for all VU students</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {pricingPlans.map((plan, index) => (
-              <Card key={index} className={`bg-white shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300 ${plan.popular ? "ring-2 ring-blue-500 shadow-lg" : ""}`}>
-                <CardHeader className="text-center pb-4 pt-6 flex flex-col items-center">
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">{plan.name} plan</h3>
+          <div className="flex justify-center">
+            <div className="w-full max-w-md">
+              {pricingPlans.map((plan, index) => (
+                <Card key={index} className={`bg-white shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300 ${plan.popular ? "ring-2 ring-blue-500 shadow-lg" : ""}`}>
+                  <CardHeader className="text-center pb-4 pt-6 flex flex-col items-center">
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">{plan.name} plan</h3>
 
-                  <div className="mb-4">
-                    {plan.name === "Free" ? (
-                      <div className="text-3xl font-bold text-blue-600">Free</div>
-                    ) : (
-                      <div className="flex items-baseline justify-center gap-2">
-                        <span className="text-3xl font-bold text-blue-600">{plan.price}</span>
-                        <span className="text-gray-500 text-sm">/{plan.period}</span>
-                        {plan.name === "Pro" && <span className="text-sm text-gray-400 line-through">$49.99/month</span>}
-                      </div>
-                    )}
-                  </div>
-                </CardHeader>
-
-                <CardBody className="pt-0">
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <span className="text-white text-xs">✓</span>
+                    <div className="mb-4">
+                      {plan.name === "Free" ? (
+                        <div className="text-3xl font-bold text-blue-600">Free</div>
+                      ) : (
+                        <div className="flex items-baseline justify-center gap-2">
+                          <span className="text-3xl font-bold text-blue-600">{plan.price}</span>
+                          <span className="text-gray-500 text-sm">/{plan.period}</span>
+                          {plan.name === "Pro" && <span className="text-sm text-gray-400 line-through">$49.99/month</span>}
                         </div>
-                        <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      )}
+                    </div>
+                  </CardHeader>
 
-                  <CustomButton color="primary" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200" size="lg">
-                    {plan.buttonText}
-                  </CustomButton>
-                </CardBody>
-              </Card>
-            ))}
+                  <CardBody className="pt-0">
+                    <ul className="space-y-3 mb-6">
+                      {plan.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-start gap-3">
+                          <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-white text-xs">✓</span>
+                          </div>
+                          <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <CustomButton color="primary" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200" size="lg">
+                      {plan.buttonText}
+                    </CustomButton>
+                  </CardBody>
+                </Card>
+              ))}
+            </div>
           </div>
         </CustomContainer>
       </section>
@@ -252,9 +255,9 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="p-6">
                 <CardBody className="text-center">
-                  <div className="text-4xl mb-4">🔐</div>
-                  <h3 className="text-xl font-semibold mb-3">End-to-End Encryption</h3>
-                  <p className="text-gray-600 dark:text-gray-300">All your data is encrypted and never stored on our servers</p>
+                  <div className="text-4xl mb-4">📧</div>
+                  <h3 className="text-xl font-semibold mb-3">Minimal Data Collection</h3>
+                  <p className="text-gray-600 dark:text-gray-300">We only store your email address for login purposes. No other personal data is collected or stored.</p>
                 </CardBody>
               </Card>
 
@@ -262,15 +265,15 @@ export default function Home() {
                 <CardBody className="text-center">
                   <div className="text-4xl mb-4">🚫</div>
                   <h3 className="text-xl font-semibold mb-3">No Data Selling</h3>
-                  <p className="text-gray-600 dark:text-gray-300">We never sell or share your personal information with third parties</p>
+                  <p className="text-gray-600 dark:text-gray-300">We never sell or share your email address with third parties. Your data stays private.</p>
                 </CardBody>
               </Card>
 
               <Card className="p-6">
                 <CardBody className="text-center">
                   <div className="text-4xl mb-4">🛡️</div>
-                  <h3 className="text-xl font-semibold mb-3">GDPR Compliant</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Fully compliant with international privacy regulations</p>
+                  <h3 className="text-xl font-semibold mb-3">Secure & Compliant</h3>
+                  <p className="text-gray-600 dark:text-gray-300">Your email is encrypted and stored securely. We comply with all privacy regulations.</p>
                 </CardBody>
               </Card>
             </div>

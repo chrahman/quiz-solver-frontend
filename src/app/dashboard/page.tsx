@@ -39,7 +39,7 @@ export default function DashboardPage() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Welcome to Quiz Solver Dashboard</h1>
-                <p className="text-xl text-gray-600 dark:text-gray-300">Manage your account and access premium features</p>
+                <p className="text-xl text-gray-600 dark:text-gray-300">Manage your account and access all features for free</p>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -76,12 +76,22 @@ export default function DashboardPage() {
 
                 <Card className="bg-white shadow-lg border-0">
                   <CardHeader className="text-center pb-4 pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Upgrade Plan</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">Your Free Plan</h3>
                   </CardHeader>
                   <CardBody className="pt-0">
-                    <p className="text-sm text-gray-600 mb-4">Unlock unlimited quiz questions and advanced AI features.</p>
-                    <CustomButton className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white" size="lg">
-                      Upgrade to Premium
+                    <div className="space-y-2 mb-4">
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium">Plan:</span> Free Forever
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium">Status:</span> Active
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium">Features:</span> All features included
+                      </p>
+                    </div>
+                    <CustomButton className="w-full bg-green-600 hover:bg-green-700 text-white" size="lg">
+                      ✓ All Features Unlocked
                     </CustomButton>
                   </CardBody>
                 </Card>
