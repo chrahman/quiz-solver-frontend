@@ -21,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" id="drawer-portal">
+      <head>
+        <meta name="google-site-verification" content="JLUCyXVLAgL1E5MKu0BWJMKIMcf2u-NWYeLnWdlxdeY" />
+      </head>
       <body className={`${poppins.variable} font-poppins antialiased`}>
         <AuthProvider>{children}</AuthProvider>
       </body>

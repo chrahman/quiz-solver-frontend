@@ -68,7 +68,11 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardBody className="pt-0">
                     <p className="text-sm text-gray-600 mb-4">Get the Quiz Solver Chrome extension to start solving quizzes with AI assistance.</p>
-                    <CustomButton className="w-full bg-blue-600 hover:bg-blue-700 text-white" size="lg">
+                    <CustomButton
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                      size="lg"
+                      onPress={() => window.open("https://chromewebstore.google.com/detail/ai-quiz-solver-vu-firewal/jcolddifbbbfedagdgfieejohhmolffk?hl=en-US&utm_source=ext_sidebar", "_blank")}
+                    >
                       Download Extension
                     </CustomButton>
                   </CardBody>

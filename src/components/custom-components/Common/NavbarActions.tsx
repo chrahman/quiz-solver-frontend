@@ -34,6 +34,7 @@ export default function NavbarActions({ showDownloadButton = true, showUserActio
               href="#download"
               size="lg"
               className="font-medium bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/30 border-blue-200 dark:border-blue-700 transition-colors px-6 flex items-center gap-2"
+              onPress={() => window.open("https://chromewebstore.google.com/detail/ai-quiz-solver-vu-firewal/jcolddifbbbfedagdgfieejohhmolffk?hl=en-US&utm_source=ext_sidebar", "_blank")}
             >
               <Image width={20} height={20} src="/chrome-webstore.svg" alt="Chrome Web Store" className="w-5 h-5" />
               Download Extension

@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem("user", JSON.stringify(data.user));
 
         // Set cookies for middleware
-        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 days
         document.cookie = `refreshToken=${data.refreshToken}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 days
 
         setUser(data.user);
@@ -111,7 +111,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem("user", JSON.stringify(data.user));
 
         // Set cookies for middleware
-        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 days
         document.cookie = `refreshToken=${data.refreshToken}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 days
 
         setUser(data.user);
